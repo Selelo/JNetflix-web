@@ -1,0 +1,22 @@
+.card {
+    margin: 3px;
+    transition: all linear .2s;
+    cursor: pointer;
+    background-color: #222222;
+    border: 1px solid lightgray;
+    color: white;
+    background-size: cover;
+    min-height: 25vh;
+}
+.card:hover {
+    transition-delay: .5s;
+    transform: scale(1.2);
+    z-index: 10;
+    box-shadow: inset 0px -40px 120px 31px #000000;
+}
+
+.row {
+}
+.col-md-3 {
+    padding: 0;
+}
