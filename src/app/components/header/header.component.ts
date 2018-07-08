@@ -8,7 +8,7 @@ import {Event, NavigationEnd, Router} from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  private url: String;
+  public url: string;
   constructor(public router: Router) {
       this.router.events
         .subscribe((event: Event) => {

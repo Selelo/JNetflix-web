@@ -21,12 +21,13 @@ export class MoviesGridComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     const filter = changes.filter.currentValue;
     console.log('nuevo filter: ', filter);
+    console.log('nuevo filter current: ', this.filter);
     this.findMovies();
   }
 
 
   private findMovies() {
-      const findObservable = this.filter === 0
+      const findObservable = Number(this.filter) === 0
           ? this.movieService.findAllMovies()
           : this.movieService.findMoviesByGender(this.filter);
 
