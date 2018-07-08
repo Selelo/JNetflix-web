@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Event, NavigationEnd, Router} from '@angular/router';
 
 @Component({
   selector: 'app-footer',
@@ -7,7 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  public url: string;
+  constructor(private router: Router) {
+    this.router.events
+      .subscribe((event: Event) => {
+          if (event instanceof NavigationEnd ) {
+              console.log(event.url);
+              this.url = event.url;
+          }
+      });
+  }
 
   ngOnInit() {
   }

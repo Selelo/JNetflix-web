@@ -9,6 +9,8 @@ import { MoviesGridComponent } from './components/movies-grid/movies-grid.compon
 import {HttpClientModule} from '@angular/common/http';
 import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
+import { MoviesComponent } from './components/movies/movies.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,12 +19,14 @@ import { LoginComponent } from './components/login/login.component';
     HomeComponent,
     MoviesGridComponent,
     FooterComponent,
-    LoginComponent
+    LoginComponent,
+    MoviesComponent
   ],
   imports: [
     BrowserModule,
     AppRouterModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
   ],
