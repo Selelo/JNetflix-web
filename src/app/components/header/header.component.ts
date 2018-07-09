@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import {Event, NavigationEnd, Router} from '@angular/router';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +10,8 @@ import {Event, NavigationEnd, Router} from '@angular/router';
 export class HeaderComponent implements OnInit {
 
   public url: string;
-  constructor(public router: Router) {
+  public currentUser: any;
+  constructor(public router: Router, public authService: AuthService) {
       this.router.events
         .subscribe((event: Event) => {
           if (event instanceof NavigationEnd ) {
@@ -20,6 +22,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+      this.currentUser = this.authService.getCurrentUser();
   }
 
 }

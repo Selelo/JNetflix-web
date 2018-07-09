@@ -11,6 +11,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
 import { MoviesComponent } from './components/movies/movies.component';
 import {FormsModule} from '@angular/forms';
+import { ProfilesComponent } from './components/profiles/profiles.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {FormsModule} from '@angular/forms';
     MoviesGridComponent,
     FooterComponent,
     LoginComponent,
-    MoviesComponent
+    MoviesComponent,
+    ProfilesComponent
   ],
   imports: [
     BrowserModule,
