@@ -1,0 +1,31 @@
+.container-profiles {
+    background-color: #141414;
+    min-height: 100vh;
+    padding-top: 60px;
+}
+
+.card > .card-body {
+    background-size: cover;
+    min-height: 256px;
+    min-width: 256px;
+}
+
+.profile-img {
+    max-width: 128px;
+    max-height: 128px;
+    border: 2px solid #444444;
+}
+.profile-name {
+    color: gray !important;
+}
+
+.profile-container:hover >.profile-img {
+    border: 2px solid lightgray;
+}
+.profile-container:hover>.profile-name {
+    color: lightgray;
+}
+
+.profile-link-container {
+    text-decoration: none;
+}
