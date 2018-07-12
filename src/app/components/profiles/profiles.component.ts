@@ -13,10 +13,10 @@ export class ProfilesComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = this.authService.getCurrentUser();
-    this.currentUser.profiles = [
+    /*this.currentUser.profiles = [
         {name: 'julian', user: 1},
         {name: 'daniel', user: 1}
-    ];
+    ];*/
     console.log(this.currentUser);
   }
 

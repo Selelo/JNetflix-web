@@ -27,6 +27,17 @@ export class AuthService {
         }));
   }
 
+  public logout() {
+      const url = api + 'logout';
+      return this.http.post(url, {})
+          .pipe(map(response => {
+              if (response) {
+                  this.setCurrentUser(null);
+              }
+              return response;
+          }));
+  }
+
   public getCurrentUser() {
       return this.currentUser;
   }

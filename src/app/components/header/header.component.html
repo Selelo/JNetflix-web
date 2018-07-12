@@ -12,12 +12,27 @@
         <a class="nav-link" routerLink="/movies">Peliculas</a>
       </li>
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="list">Mi lista</a>
+        <a class="nav-link" routerLink="/list">Mi lista</a>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto">
         <li *ngIf="!currentUser" routerLinkActive="active"><a class="nav-link" routerLink="/login">Login</a></li>
-        <li *ngIf="currentUser" routerLinkActive="active"><a class="nav-link" routerLink="/profile">Profile</a></li>
+        <!--<li *ngIf="currentUser" routerLinkActive="active"><a class="nav-link" routerLink="/profile">Profile</a></li>-->
+        <li *ngIf="currentUser" class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Profile
+            </a>
+            <div class="dropdown-menu dropdown-menu-right bg-dark" aria-labelledby="profileDropdown" *ngIf="currentUser && currentUser.profiles">
+                <a class="dropdown-item text-light" *ngFor="let profile of currentUser.profiles; let index = index" routerLink="/">
+                    <img src="/assets/images/profile{{(index+1)}}.png" width="32" height="32" alt="">
+                    <span class="ml-2">{{profile.name | titlecase}}</span>
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item text-light" routerLink="/profile">Account</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item text-light" (click)="logout()">logout</a>
+            </div>
+        </li>
     </ul>
   </div>
 </nav>

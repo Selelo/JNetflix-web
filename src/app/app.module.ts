@@ -12,6 +12,7 @@ import { LoginComponent } from './components/login/login.component';
 import { MoviesComponent } from './components/movies/movies.component';
 import {FormsModule} from '@angular/forms';
 import { ProfilesComponent } from './components/profiles/profiles.component';
+import { MyListComponent } from './components/my-list/my-list.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ProfilesComponent } from './components/profiles/profiles.component';
     FooterComponent,
     LoginComponent,
     MoviesComponent,
-    ProfilesComponent
+    ProfilesComponent,
+    MyListComponent
   ],
   imports: [
     BrowserModule,

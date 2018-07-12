@@ -9,6 +9,7 @@ import {MovieService} from '../../services/movie.service';
 export class MoviesGridComponent implements OnInit, OnChanges {
 
   @Input() public filter: number;
+  @Input() public myList: boolean;
   public movies: Array<any>;
   constructor(public movieService: MovieService) {
   }
@@ -19,17 +20,25 @@ export class MoviesGridComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    const filter = changes.filter.currentValue;
-    console.log('nuevo filter: ', filter);
-    console.log('nuevo filter current: ', this.filter);
+    if(changes.filter) {
+        const filter = changes.filter.currentValue;
+        console.log('nuevo filter: ', filter);
+        console.log('nuevo filter current: ', this.filter);
+    }
     this.findMovies();
   }
 
 
   private findMovies() {
-      const findObservable = Number(this.filter) === 0
-          ? this.movieService.findAllMovies()
-          : this.movieService.findMoviesByGender(this.filter);
+      let findObservable;
+      if (this.myList) {
+          findObservable = this.movieService.findMyList();
+      } else {
+          findObservable = Number(this.filter) === 0
+              ? this.movieService.findAllMovies()
+              : this.movieService.findMoviesByGender(this.filter);
+      }
+
 
       findObservable
           .subscribe(movies => {

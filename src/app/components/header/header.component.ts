@@ -23,6 +23,16 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
       this.currentUser = this.authService.getCurrentUser();
+      console.log("CURRENTUSER: ", this.currentUser);
+  }
+
+  public logout() {
+    this.authService.logout()
+      .subscribe(response => {
+        if (response) {
+            this.router.navigate(['/login']);
+        }
+      });
   }
 
 }
