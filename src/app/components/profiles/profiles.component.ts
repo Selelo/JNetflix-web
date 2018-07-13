@@ -12,7 +12,12 @@ export class ProfilesComponent implements OnInit {
   constructor(public authService: AuthService) { }
 
   ngOnInit() {
-    this.currentUser = this.authService.getCurrentUser();
+    this.authService.getCurrentUser()
+        .subscribe(user => {
+            if(user) {
+              this.currentUser = user;
+            }
+        });
     /*this.currentUser.profiles = [
         {name: 'julian', user: 1},
         {name: 'daniel', user: 1}
@@ -20,7 +25,8 @@ export class ProfilesComponent implements OnInit {
     console.log(this.currentUser);
   }
 
-  public selectProfile(profile: any) {
+  public selectProfile(profile: any, index: number) {
+      profile.indexImg = index;
       this.currentUser.profileSelected = profile;
       this.authService.setCurrentUser(this.currentUser);
   }

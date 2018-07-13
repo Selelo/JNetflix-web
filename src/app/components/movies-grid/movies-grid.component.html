@@ -2,9 +2,14 @@
     <div class="col-sm-6 col-md-3 mb-5" *ngFor="let movie of movies">
         <div class="card" style="background-image: url('/assets/images/image-default.jpg')">
             <!--<img class="card-img-top" src="assets/images/image-default.jpg" alt="Card image cap">-->
-            <div class="card-body d-flex flex-column justify-content-end pb-0">
-                <div class="card-title mb-0">{{movie.name}}</div>
-                <p>Duración: {{movie.durationMin}} minutos</p>
+            <div class="card-body d-flex">
+                <div class="col-9 d-flex flex-column justify-content-end">
+                    <div class="card-title mb-0">{{movie.name}}</div>
+                    <p>Duración: {{movie.durationMin}} minutos</p>
+                </div>
+                <div class="col-3 d-flex flex-column justify-content-end align-items-end">
+                    <i class="fa fa-heart favorite-icon {{movie.favorite ? 'selected' : ''}}" (click)="addFavoriteMovie(movie);" data-toggle="tooltip" title="{{movie.favorite ? 'Quitar de favoritos' : 'Añadir a favoritos'}}"></i>
+                </div>
             </div>
         </div>
     </div>

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {api} from '../config';
 import {map} from 'rxjs/operators';
+import {BehaviorSubject, Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,10 +10,12 @@ import {map} from 'rxjs/operators';
 export class AuthService {
 
     private currentUser: any;
+    private currentUserObservable: BehaviorSubject<any>;
   constructor(public http: HttpClient) {
       if (localStorage.getItem('currentUser') != null) {
           this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
       }
+      this.currentUserObservable = new BehaviorSubject(this.currentUser);
   }
 
   public login(userLogin: any) {
@@ -38,12 +41,13 @@ export class AuthService {
           }));
   }
 
-  public getCurrentUser() {
-      return this.currentUser;
+  public getCurrentUser(): Observable<any> {
+      return this.currentUserObservable;
   }
 
-  public setCurrentUser(user: any) {
+  public setCurrentUser(user: any): void {
       localStorage.setItem('currentUser', JSON.stringify(user));
-      this.currentUser = user;
+      //this.currentUser = user;
+      this.currentUserObservable.next(user);
   }
 }

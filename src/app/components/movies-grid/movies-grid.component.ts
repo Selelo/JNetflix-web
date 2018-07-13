@@ -38,14 +38,30 @@ export class MoviesGridComponent implements OnInit, OnChanges {
               ? this.movieService.findAllMovies()
               : this.movieService.findMoviesByGender(this.filter);
       }
-
-
+      console.log(findObservable);
       findObservable
           .subscribe(movies => {
               if (movies) {
+                  console.log(this.movies);
                   this.movies = movies as Array<any>;
               }
           });
+  }
+
+  public addFavoriteMovie(movie: any) {
+      this.movieService.addFavorite(movie)
+          .subscribe((resp: any) => {
+              if(resp.method === 'DELETE') {
+                  alert(`La pelicula ${movie.name} ha sido eliminada de tus favoritos`);
+              } else if(resp.method === 'SAVE') {
+                  alert(`La pelicula ${movie.name} ha sido añadida a tus favoritos`);
+              }
+          });
+      this.movies.map(currentMovie => {
+          if(currentMovie.id === movie.id) {
+              currentMovie.favorite = !currentMovie.favorite;
+          }
+      });
   }
 
 }

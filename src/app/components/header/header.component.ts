@@ -22,8 +22,13 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-      this.currentUser = this.authService.getCurrentUser();
-      console.log("CURRENTUSER: ", this.currentUser);
+      this.authService.getCurrentUser()
+          .subscribe(user => {
+             if(user) {
+                 this.currentUser = user;
+                 console.log("CURRENTUSER: ", this.currentUser);
+             }
+          });
   }
 
   public logout() {
@@ -33,6 +38,12 @@ export class HeaderComponent implements OnInit {
             this.router.navigate(['/login']);
         }
       });
+  }
+
+  public setProfile(profile: any, index: number) {
+      profile.indexImg = index;
+      this.currentUser.profileSelected = profile;
+      this.authService.setCurrentUser(this.currentUser);
   }
 
 }

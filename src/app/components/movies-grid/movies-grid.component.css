@@ -20,3 +20,19 @@
 .col-md-3 {
     padding: 0;
 }
+
+.card:hover .favorite-icon {
+    transition-delay: .5s;
+    visibility: visible;
+}
+.favorite-icon {
+    transition: .3s all;
+    visibility: hidden;
+}
+.favorite-icon:hover {
+    color: crimson;
+}
+.favorite-icon.selected {
+    visibility: visible;
+    color: crimson;
+}

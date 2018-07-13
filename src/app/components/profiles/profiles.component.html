@@ -6,7 +6,7 @@
     </div>
     <div class="row">
         <div class="col-md-12 d-flex justify-content-center align-items-center">
-            <a class="m-3 profile-link-container" routerLink="/" (click)="selectProfile(profile)" *ngFor="let profile of currentUser.profiles; let index = index">
+            <a class="m-3 profile-link-container" routerLink="/" *ngFor="let profile of currentUser.profiles; let index = index" (click)="selectProfile(profile, index)" >
                 <div class="profile-container d-flex flex-column align-items-center">
                     <img class="profile-img" src="/assets/images/profile{{(index+1)}}.png" alt="">
                     <p class="text-light profile-name">{{profile.name | titlecase}}</p>
