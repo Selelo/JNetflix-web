@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-sm-6 col-md-3 mb-5" *ngFor="let movie of movies">
-        <div class="card" style="background-image: url('/assets/images/image-default.jpg')">
+        <div class="card" [style.background-image]="clearImgUrl(movie.movieId)" (click)="showMovie(movie.id, $event)">
             <!--<img class="card-img-top" src="assets/images/image-default.jpg" alt="Card image cap">-->
             <div class="card-body d-flex">
                 <div class="col-9 d-flex flex-column justify-content-end">

@@ -28,9 +28,11 @@
 .favorite-icon {
     transition: .3s all;
     visibility: hidden;
+    z-index: 50;
 }
 .favorite-icon:hover {
     color: crimson;
+    transform: scale(1.3);
 }
 .favorite-icon.selected {
     visibility: visible;

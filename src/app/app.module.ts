@@ -13,6 +13,8 @@ import { MoviesComponent } from './components/movies/movies.component';
 import {FormsModule} from '@angular/forms';
 import { ProfilesComponent } from './components/profiles/profiles.component';
 import { MyListComponent } from './components/my-list/my-list.component';
+import { ShowMovieComponent } from './components/show-movie/show-movie.component';
+import {YoutubePlayerModule} from 'ngx-youtube-player';
 
 @NgModule({
   declarations: [
@@ -24,13 +26,15 @@ import { MyListComponent } from './components/my-list/my-list.component';
     LoginComponent,
     MoviesComponent,
     ProfilesComponent,
-    MyListComponent
+    MyListComponent,
+    ShowMovieComponent
   ],
   imports: [
     BrowserModule,
     AppRouterModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    YoutubePlayerModule
   ],
   providers: [
   ],

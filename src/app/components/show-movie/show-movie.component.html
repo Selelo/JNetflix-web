@@ -1,0 +1,13 @@
+<div class="container-fluid container-home">
+    <div class="row">
+        <div class="col d-flex justify-content-center">
+            <youtube-player *ngIf="movie"
+                [videoId]="movie.movieId"
+                [width]="1100"
+                [height]="600"
+                (ready)="savePlayer($event)"
+                (change)="onStateChange($event)"
+            ></youtube-player>
+        </div>
+    </div>
+</div>

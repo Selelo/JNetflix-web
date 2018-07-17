@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {MovieService} from '../../services/movie.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  public movies: Observable<any>;
+  constructor(private movieService: MovieService) {
+    this.movies = this.movieService.findAllMovies();
+  }
 
   ngOnInit() {
   }

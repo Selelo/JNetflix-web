@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import { api } from '../config';
 import {AuthService} from './auth.service';
-import {flatMap, map} from 'rxjs/operators';
-import {Observable} from 'rxjs';
+import {first, map, switchMap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +12,7 @@ export class MovieService {
 
   public findAllMovies() {
       return this.authService.getCurrentUser()
-          .pipe(flatMap(currentUser => {
+          .pipe(first(), switchMap(currentUser => {
               let params = new HttpParams().append('profile', '0');
               const url = api + '/movieWithFavorite';
               console.log("CURRENTUSER::::: ", currentUser);
@@ -32,23 +31,24 @@ export class MovieService {
     const url = api + 'movieByGender';
     return this.authService.getCurrentUser()
         .pipe(
-        map(currentUser => {
-            const profileId = currentUser.profileSelected
-            && currentUser.profileSelected.id
-                ? currentUser.profileSelected.id
-                : 0;
+            first(),
+            map(currentUser => {
+                const profileId = currentUser.profileSelected
+                && currentUser.profileSelected.id
+                    ? currentUser.profileSelected.id
+                    : 0;
 
-            return new HttpParams()
-                .append('gender', gender.toString(10))
-                .append('profile', profileId);
-        }),
-        flatMap(params => this.http.get(url, {params})));
+                return new HttpParams()
+                    .append('gender', gender.toString(10))
+                    .append('profile', profileId);
+            }),
+            switchMap(params => this.http.get(url, {params})));
 
   }
 
   public findMyList() {
       return this.authService.getCurrentUser()
-          .pipe(flatMap(currentUser => {
+          .pipe(first(), switchMap(currentUser => {
               console.log(currentUser);
               const url = api + 'movieByProfile';
               const profileId = currentUser.profileSelected
@@ -63,7 +63,7 @@ export class MovieService {
 
     public findFavorites() {
         return this.authService.getCurrentUser()
-            .pipe(flatMap(currentUser => {
+            .pipe(first(), switchMap(currentUser => {
                 console.log(currentUser);
                 const url = api + 'movieByProfile';
                 const profileId = currentUser.profileSelected
@@ -78,9 +78,17 @@ export class MovieService {
 
   public addFavorite(movie: any) {
       return this.authService.getCurrentUser()
-          .pipe(flatMap(currentUser => {
+          .pipe(first(),
+              switchMap(currentUser => {
               const url = api + 'addFavoriteMovie';
               return this.http.post(url, {profile: currentUser.profileSelected, movie: movie});
           }));
+  }
+
+  public getMovieById(id: number) {
+      const url = api + 'movieById';
+      const params = new HttpParams()
+          .append('movie', id.toString(10));
+      return this.http.get(url, {params});
   }
 }

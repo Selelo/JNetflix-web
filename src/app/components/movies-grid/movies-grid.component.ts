@@ -1,5 +1,7 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {MovieService} from '../../services/movie.service';
+import {DomSanitizer} from '@angular/platform-browser';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-movies-grid',
@@ -11,7 +13,7 @@ export class MoviesGridComponent implements OnInit, OnChanges {
   @Input() public filter: number;
   @Input() public myList: boolean;
   public movies: Array<any>;
-  constructor(public movieService: MovieService) {
+  constructor(public movieService: MovieService, private sanitization: DomSanitizer, public router: Router) {
   }
 
   ngOnInit() {
@@ -62,6 +64,18 @@ export class MoviesGridComponent implements OnInit, OnChanges {
               currentMovie.favorite = !currentMovie.favorite;
           }
       });
+  }
+
+  public showMovie(id: number, event: any) {
+      if(event.target.nodeName == 'I') {
+          return;
+      }
+      this.router.navigate([`/movie/${id}`]);
+}
+
+  public clearImgUrl(movieId: string) {
+      const image = `https://img.youtube.com/vi/${movieId}/hqdefault.jpg`;
+      return this.sanitization.bypassSecurityTrustStyle(`url(${image})`);
   }
 
 }
