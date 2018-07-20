@@ -7,6 +7,7 @@
     color: white;
     background-size: cover;
     min-height: 25vh;
+    border-radius: inherit !important;
 }
 .card:hover {
     transition-delay: .5s;

@@ -30,6 +30,12 @@ export class AuthService {
         }));
   }
 
+  public register(user: any) {
+      const url = api + 'register';
+      console.log(user);
+      return this.http.post(url, user);
+  }
+
   public logout() {
       const url = api + 'logout';
       return this.http.post(url, {})

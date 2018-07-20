@@ -15,6 +15,8 @@ import { ProfilesComponent } from './components/profiles/profiles.component';
 import { MyListComponent } from './components/my-list/my-list.component';
 import { ShowMovieComponent } from './components/show-movie/show-movie.component';
 import {YoutubePlayerModule} from 'ngx-youtube-player';
+import { RegisterComponent } from './components/register/register.component';
+import {AuthGuard} from './guards/AuthGuard';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import {YoutubePlayerModule} from 'ngx-youtube-player';
     MoviesComponent,
     ProfilesComponent,
     MyListComponent,
-    ShowMovieComponent
+    ShowMovieComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -37,6 +40,7 @@ import {YoutubePlayerModule} from 'ngx-youtube-player';
     YoutubePlayerModule
   ],
   providers: [
+      AuthGuard
   ],
   bootstrap: [AppComponent]
 })

@@ -29,3 +29,11 @@
 .profile-link-container {
     text-decoration: none;
 }
+
+.new-profile {
+    width: 128px;
+    height: 128px;
+}
+.new-profile i {
+    font-size: 2.3em;
+}

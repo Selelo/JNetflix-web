@@ -1,7 +1,8 @@
 <div class="container-fluid container-profiles">
     <div class="row">
         <div class="col-12 mb-5">
-            <h2 class="text-center text-light">¿Quién está viendo ahora?</h2>
+            <h2 *ngIf="currentUser.profiles.length" class="text-center text-light">¿Quién está viendo ahora?</h2>
+            <h2 *ngIf="!currentUser.profiles.length" class="text-center text-light">No tienes ningún perfíl</h2>
         </div>
     </div>
     <div class="row">
@@ -10,6 +11,12 @@
                 <div class="profile-container d-flex flex-column align-items-center">
                     <img class="profile-img" src="/assets/images/profile{{(index+1)}}.png" alt="">
                     <p class="text-light profile-name">{{profile.name | titlecase}}</p>
+                </div>
+            </a>
+            <a class="m-3 profile-link-container" routerLink="/addProfile">
+                <div class="profile-container d-flex flex-column align-items-center">
+                    <img class="profile-img" src="/assets/images/plus.png" alt="">
+                    <p class="text-light profile-name">Agregar perfíl</p>
                 </div>
             </a>
         </div>

@@ -12,7 +12,7 @@ export class MovieService {
 
   public findAllMovies() {
       return this.authService.getCurrentUser()
-          .pipe(first(), switchMap(currentUser => {
+          .pipe( switchMap(currentUser => {
               let params = new HttpParams().append('profile', '0');
               const url = api + '/movieWithFavorite';
               console.log("CURRENTUSER::::: ", currentUser);

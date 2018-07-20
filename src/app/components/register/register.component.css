@@ -1,0 +1,21 @@
+.container-fluid {
+    background-color: white;
+    min-height: 100vh;
+}
+
+.card-login {
+    background-color: white;
+    border: none;
+}
+
+.login-title {
+    font-size: 4em;
+}
+
+.navbar-brand {
+    font-size: 2.5em;
+}
+
+nav.navbar {
+    border-bottom: 1px solid lightgray;
+}
