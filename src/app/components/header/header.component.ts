@@ -46,4 +46,11 @@ export class HeaderComponent implements OnInit {
       this.authService.setCurrentUser(this.currentUser);
   }
 
+  public validateShowHeader() {
+      return this.url
+          && this.url !== '/login'
+          && this.url !== '/profiles'
+          && this.url !== '/register'
+          && !this.url.includes('/movie/');
+  }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {flatMap} from 'rxjs/operators';
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
+import {filter, flatMap} from 'rxjs/operators';
 import {MovieService} from '../../services/movie.service';
 
 @Component({
@@ -12,8 +12,9 @@ export class ShowMovieComponent implements OnInit {
 
   public movie: any;
   public player: YT.Player;
-  constructor(public router: ActivatedRoute, public movieService: MovieService) {
-    this.router.params
+  public prevUrl: string;
+  constructor(public activatedRouter: ActivatedRoute, public movieService: MovieService) {
+    this.activatedRouter.params
         .pipe(flatMap(params => this.movieService.getMovieById(params.id)))
         .subscribe(movie => {
             this.movie = movie;
@@ -27,7 +28,7 @@ export class ShowMovieComponent implements OnInit {
         this.player = player;
         console.log('player instance', player);
     }
-    static onStateChange(event) {
+    public onStateChange(event) {
         console.log('player state', event.data);
     }
 
